@@ -9,10 +9,56 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <script data-main="js/main" src="js/libs/require/require.js"></script>
+
+ 
+        <link href="css/jquery-ui-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/foundation-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+
+       <script data-main="js/main" src="js/libs/require/require.js"></script>  
+
+
     </head>
     <body>
-        <div>TODO write content</div>
+
+        <section id="pageContainer">  
+            <header></header>
+            <section id="main">
+              
+                
+                  <div class="tHeadContainer">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th class="nameItem">Name</th>
+                                <th class="cityItem">City</th>
+                                <th class="stateItem">State</th>
+                                <th class="zipCodeItem">Zip Code</th>
+                                <th class="versionItem">Version</th>
+                                <th class="actionItems">&nbsp;</th>
+                                <th class="actionItems">&nbsp;</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div  class="tBodyContainer">
+                    <table class="table" >
+                        <tbody id="listPoint"></tbody>
+                    </table>
+                </div>
+                
+                
+                
+            </section>
+
+        </section>  
+            
+
+
+
+
+
+
     </body>
 </html>

@@ -9,7 +9,9 @@ define([
   AppRouter = Backbone.Router.extend({
 
     initialize: function(options) {
-      this.collection = options.collection;
+       this.options = options;
+    //   console.log("router1 "+JSON.stringify(options))
+      
     },
 
     routes:{
@@ -17,13 +19,14 @@ define([
          
     },
     home:function(e) {
-      var homeView = new HomeView({collection: this.collection}).render();
+ 
+      var homeView = new HomeView(this.options).render();
     } 
   });
   
-  var initialize = function(){
+  var initialize = function(options){
      
-    var app_router = new AppRouter({collection: null});
+    var app_router = new AppRouter(options);
 
     Backbone.history.start();
   };

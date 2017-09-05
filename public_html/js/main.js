@@ -5,6 +5,7 @@ require.config({
     underscore: 'libs/underscore/underscore-1.4.4',
     backbone: 'libs/backbone/backbone-0.9.10',
     templates: '../templates',
+    baseOptions: 'baseOptions',
     app: 'app'
   },
 
@@ -21,10 +22,12 @@ require.config({
 
 require([
   'jquery',
-  'app'
-], function( $, App ){
+  'app',
+  'baseOptions'
+], function( $, App,baseOptions ){
 
     $(function(){
-      App.initialize();
+        var options = baseOptions ; 
+        App.initialize(options);
     });
 });
