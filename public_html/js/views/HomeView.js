@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     'views/RestaurantListView',
+    'views/RestaurantFormView',
     'models/RestaurantList'
-], function ($, _, Backbone, RestaurantListView, RestaurantList) {
+], function ($, _, Backbone, RestaurantListView,RestaurantFormView, RestaurantList) {
 
     var HomeView = Backbone.View.extend({
 
@@ -18,19 +19,9 @@ define([
                 escape: /\{\{(.+?)\}\}/gim
 
             };
-
-
-        },
-
-        render: function () {
-            //var el = $('#listPoint');
-            //var self = this;
-            //el.empty();
-
-            //_.each(self.options.collection,function(row)
-            //{
-            //    el.append("<h3>"+row.name+"</h3>")
-            //})
+ 
+ 
+            // restaurant scroll list
             var wrappedCollection = new RestaurantList(this.options.collection);
             this.restaurantListView = new RestaurantListView({
                 "vent": this.options.vent,
@@ -38,6 +29,16 @@ define([
             });
 
             this.restaurantListView.render();
+            
+            //restaurant editing area
+            this.myRestaurantFormView = new RestaurantFormView({
+				"vent" : this.options.vent
+			});
+            this.myRestaurantFormView.render();
+            
+            
+            
+            
             return this;
         }
     });

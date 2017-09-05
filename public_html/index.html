@@ -48,7 +48,39 @@ and open the template in the editor.
                     </table>
                 </div>
                 
-                
+                <div>
+                    <div class="row">
+                        <div id="editArea" class="well columnLeft">
+
+                            <div id="restaurantFormViewItems"></div>
+                            <div class="row">
+
+                                <input type="button" id="saveEdits" style="display: none"
+                                       class="btn btn-primary"
+                                       onclick="window.myRestaurantFormView.saveEdits()"
+                                       value="Save Changes" /> <input type="button" id="addRestaurant"
+                                       style="margin: 2px" class="btn btn-primary"
+                                       onclick="window.myRestaurantFormView.addRestaurant()"
+                                       value="Add New Restaurant" />
+
+                            </div>
+                            <div>
+                                <ul id="errorItems">
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="ratingsArea" class="columnRight">
+                            <h4 style="display: inline-block">Reviews</h4>
+                            <button id="addReviewButton"
+                                    onclick="window.myRatingsListView.showAddReviewDialog();"
+                                    style="display: none" class='btn btn-small btn-primary'>
+                                <i class="icon fi-pencil"></i> Add Review
+                            </button>
+                            <ul class="noImage" id="ratingsLocation"></ul>
+                        </div>
+                    </div>
+                </div>
                 
             </section>
 

@@ -15,7 +15,7 @@ define([
         initialize: function (options) {
             // this.collection = options.collection;
             
-            console.log("xxxxxxx "+RestaurantView)
+            
             _.bindAll(this, "editModel", "deleteModel", "saveModel",
                     "addModel");
             this.collection.bind("change", this.render, this);
