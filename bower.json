@@ -1,0 +1,28 @@
+{
+  "name": "backbone-restaurant",
+  "version": "1.0.0",
+  "main": "path/to/main.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public_html/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "1.1.0",
+    "underscore": "1.5.1",
+    "jquery": "2.2.3",
+    "jquery-ui": "1.11.4"
+  },
+  "devDependencies": {},
+  "authors": [
+    "Donaby Henton <donhenton@gmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "homepage": ""
+}
