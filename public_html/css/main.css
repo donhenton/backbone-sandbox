@@ -574,13 +574,15 @@ section#pageContainer {
   section#pageContainer header {
     background-color: #16174f;
     color: white;
-    height: 90px;
+    height: 20px;
     width: 100%; }
   section#pageContainer section#main {
     width: 1200px;
+    height:575px!important;
     border: 5px double #16174f;
     margin: -15px auto 5px auto;
     background-color: white;
+    height: auto;
     border-radius: 10px;
     padding: 20px;
     clear: both; }
