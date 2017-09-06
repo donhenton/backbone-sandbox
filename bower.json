@@ -13,10 +13,11 @@
     "tests"
   ],
   "dependencies": {
-    "backbone": "1.1.0",
-    "underscore": "1.5.1",
-    "jquery": "2.2.3",
-    "jquery-ui": "1.11.4"
+    "backbone": "0.9.10",
+    "underscore": "1.4.4",
+    "jquery": "1.8.1",
+    "jquery-ui": "1.11.4",
+    "requirejs": "2.1.5"
   },
   "devDependencies": {},
   "authors": [
