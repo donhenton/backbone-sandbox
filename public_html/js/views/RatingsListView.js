@@ -33,7 +33,7 @@ define([
             this.vent.bind("reshowEditList", this.reshowEditList),
             //this.addButtonRef.hide();
             this.template = _.template(ratingsListViewTemplate);
-            this.addDialogRef = $('#addReviewModal');
+            this.addDialogRef = $(baseOptions.reviewDialogSelector);
                     
 
         },
@@ -90,7 +90,7 @@ define([
             var starRatingVal = this.addDialogRef.find("#a_starRating").val();
             var starRating = parseInt(starRatingVal);
             //console.log("hit add review "+reviewListingVal+" "+starRatingVal);
-            var newReview = new window.Ratings();
+            var newReview = new Ratings();
             newReview.set("starRating", starRating)
             newReview.set("reviewListing", reviewListingVal)
             newReview.set("isEditing", false);
@@ -99,7 +99,7 @@ define([
 
             //TODO add validation
 
-            var opts = {"url": _main_url + "review/" + this.restaurant.get("id"), parse: "true", "wait": true, "success": this.reviewAddCallBack};
+            var opts = {"url": baseOptions._main_url + "review/" + this.restaurant.get("id"), parse: "true", "wait": true, "success": this.reviewAddCallBack};
             newReview.save(newReview.toJSON(), opts);
 
 

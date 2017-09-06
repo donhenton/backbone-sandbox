@@ -55,8 +55,8 @@ define([
                         'modal': true,
                         'dialogClass': 'addReviewModalClass',
                         'width': 500,
-                        'height': 250,
-                        'minHeight': 250,
+                        'height': 300,
+                        'minHeight': 300,
                         'draggable': false,
                     })
             

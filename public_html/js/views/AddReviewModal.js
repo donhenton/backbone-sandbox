@@ -3,7 +3,8 @@ define([
     'underscore',
     'backbone',
     'text!templates/addReviewModal.html',
-], function ($, _, Backbone, dialogTemplate) {
+    'baseOptions'
+], function ($, _, Backbone, dialogTemplate,baseOptions) {
     var addReviewModal =
             Backbone.View.extend({
 
@@ -16,11 +17,6 @@ define([
                 },
                 render: function () {
                     var html = this.template({});
-                    
-                    // this.el = $('#addReviewModal').parent();
-                    // this.delegateEvents(this.events);
-                    
-                    
                     $(this.el).append(html);
                     return this;
                 },
@@ -32,11 +28,12 @@ define([
                 },
 
                 save: function () {
-                    console.log("save pressed ")
+                    this.listViewRef.addReview();
+                    console.log("save pressed "+this.listViewRef)
                 },
                 close: function () {
                     console.log("close pressed");
-                  
+                  $(baseOptions.reviewDialogSelector).dialog('close')
                 },
             });
 
