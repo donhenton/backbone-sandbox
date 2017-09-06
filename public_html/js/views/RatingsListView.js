@@ -30,9 +30,9 @@ define([
             this.vent.bind("deleteModel", this.deleteModel);
             this.vent.bind("addModel", this.deleteModel);
             this.vent.bind("refreshRatings", this.refreshRatings),
-                    this.vent.bind("reshowEditList", this.reshowEditList),
-                    //this.addButtonRef.hide();
-                    this.template = _.template(ratingsListViewTemplate);
+            this.vent.bind("reshowEditList", this.reshowEditList),
+            //this.addButtonRef.hide();
+            this.template = _.template(ratingsListViewTemplate);
             this.addDialogRef = $('#addReviewModal');
                     
 
