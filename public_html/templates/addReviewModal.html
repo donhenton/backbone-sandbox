@@ -1,0 +1,44 @@
+<div id="addReviewModal">
+
+    <h3>Add Review</h3>
+
+    <div>
+
+        <div class="form form-inline row">
+
+            <label class="row">Review</label> <input id="a_reviewListing"
+                                                     name="reviewListing" size="50" placeholder="Review"
+                                                     value="" type="text">
+
+            <label class="row">Rating</label> <select  
+                id="a_starRating" name="starRating">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="text-error row" style="display:none" id="error_message_for_addReview"></div>
+
+
+
+    <div class="row">
+        <button class="btn btn-red btn-primary" onclick="$('#addReviewModal').dialog('close');">Cancel</button>
+        <button class="btn btn-primary"
+                onclick="window.myRatingsListView.addReview();">Save changes</button>
+    </div>
+</div>

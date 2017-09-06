@@ -1,0 +1,4 @@
+
+http://www.position-absolute.com/articles/using-backbone-js-with-jquery-ui-modals/
+https://stackoverflow.com/questions/38178533/using-jquery-ui-dialog-with-backbone-js-and-requirejs
+https://stackoverflow.com/questions/10237384/how-can-i-include-jqueryui-in-my-modular-backbone-js-app-using-requirejs
