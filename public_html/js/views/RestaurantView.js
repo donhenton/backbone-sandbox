@@ -12,7 +12,7 @@ define([
         className: 'restaurantRow',
 
         initialize: function (options) {
-            this.vent = options.vent;
+             this.vent = options.vent;
             _.bindAll(this, "editModel", "deleteModel");
             this.template = _.template(rowTemplate);
         },

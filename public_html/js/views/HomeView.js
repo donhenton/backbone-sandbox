@@ -4,8 +4,9 @@ define([
     'backbone',
     'views/RestaurantListView',
     'views/RestaurantFormView',
+    'views/RatingsListView',
     'models/RestaurantList'
-], function ($, _, Backbone, RestaurantListView,RestaurantFormView, RestaurantList) {
+], function ($, _, Backbone, RestaurantListView,RestaurantFormView,RatingsListView, RestaurantList) {
 
     var HomeView = Backbone.View.extend({
 
@@ -36,9 +37,9 @@ define([
 			});
             this.myRestaurantFormView.render();
             
+            this.myRatingsListView = new RatingsListView({"vent": this.options.vent});
             
-            
-            
+            this.myRatingsListView.render();
             return this;
         }
     });

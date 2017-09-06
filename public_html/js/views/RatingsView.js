@@ -3,12 +3,15 @@ define([
     'underscore',
     'backbone',
     'models/Ratings',
-    'baseOptions'
+    'baseOptions',
+    'text!templates/reviewTemplate.html',
+    'text!templates/reviewEditTemplate.html'
 
-], function ($, _, Backbone, Ratings, baseOptions) {
+], function ($, _, Backbone, Ratings, baseOptions,reviewTemplate,reviewEditTemplate) {
 
     var ratingsView = Backbone.View.extend({
         tagName: "li",
+        
         optRender: {
             interpolate: /\$\$(.+?)\$\$/gim,
             evaluate: /\$\$(.+?)\$\$/gim
@@ -19,6 +22,8 @@ define([
             this.parentRestaurant = options.parentRestaurant;
             this.vent = options.vent;
             this.options = options;
+            this.roTemplate = _.template(reviewTemplate);
+            this.editTemplate = _.template(reviewEditTemplate);
 
         },
 
@@ -110,8 +115,8 @@ define([
 
         render: function () {
 
-            var ro_html = _.template($('#reviewTemplate').html(), this.model.toJSON());
-            var edit_html = _.template($('#reviewEditTemplate').html(), this.model.toJSON());
+            var ro_html = this.roTemplate(this.model.toJSON());
+            var edit_html = this.editTemplate(this.model.toJSON());
             var dd = {};
             dd.star_select_content = this.calculateDropDown(this.model.get("starRating"));
             edit_html = _.template(edit_html, dd, this.optRender);

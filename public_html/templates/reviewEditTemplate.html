@@ -1,0 +1,12 @@
+<span class='form form-inline'>
+    <input type='text'  id='r_reviewListing'  name='r_reviewListing' value='{{reviewListing}}' size="65">
+
+    <select id='s_starRating' name='s_starRating'>
+        $$star_select_content$$
+    </select>
+    <div style="row">
+        <input type='button' value='Save'  class="saveRatingClass btn btn-small btn-primary" />
+        <input type='button' value='Cancel'   class="cancelRatingClass btn btn-small btn-red" />
+        <span class="text-error" style="display:none" id="error_message"></span>
+    </div>
+</span>
