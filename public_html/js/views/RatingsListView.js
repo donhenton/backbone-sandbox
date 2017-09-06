@@ -172,7 +172,7 @@ define([
 					
 					var ratingsView = new RatingsView({
 						"model" : ratingsModel,
-						"vent": this.vent,
+						"vent": this.vent, 
 						"parentRestaurant": this.restaurant
 					});
 

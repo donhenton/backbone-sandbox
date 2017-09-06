@@ -40,7 +40,7 @@ define([
             var r = confirm("Do you wish to remove this review?")
             if (r == true)
             {
-                var opts = {"url": this.options._main_url + "review/" + this.parentRestaurant.get("id") + "/" + this.model.get("id")};
+                var opts = {"url": baseOptions._main_url + "review/" + this.parentRestaurant.get("id") + "/" + this.model.get("id")};
                 this.model.destroy(opts);
                 this.vent.trigger("refreshRatings");
             }
@@ -60,7 +60,7 @@ define([
         {
             //override the url to allow for parent and child ids
 
-            var opts = {"url": this.options._main_url + "review/" + this.parentRestaurant.get("id") + "/" + this.model.get("id")};
+            var opts = {"url": baseOptions._main_url + "review/" + this.parentRestaurant.get("id") + "/" + this.model.get("id")};
             var tempListing = $(this.el).find('span #r_reviewListing').val();
             var errorAreaRef = $(this.el).find("#error_message");
             if (!tempListing || $.trim(tempListing).length == 0) {
