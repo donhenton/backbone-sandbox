@@ -127,6 +127,7 @@ define([
                 this.model.set("state", $('#state').val());
                 this.model.set("zipCode", $('#zipCode').val());
                 this.model.set("version", $('#version').val());
+                //TODO put error handling here
                 this.model.save();
                 this.clearFields();
                 if (eventName != null)

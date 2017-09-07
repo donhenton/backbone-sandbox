@@ -90,7 +90,7 @@ define([
         saveModel: function (newModel) {
             // this.render();
             // 
-           console.log("frump "+JSON.stringify(newModel))
+            //
             //
         },
         /**

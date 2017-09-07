@@ -97,7 +97,7 @@ define([
 
             newReview.set("idx", this.collection.length);
 
-            //TODO add validation
+            //TODO put error handling here
 
             var opts = {"url": baseOptions._main_url + "review/" + this.restaurant.get("id"), parse: "true", "wait": true, "success": this.reviewAddCallBack};
             newReview.save(newReview.toJSON(), opts);
