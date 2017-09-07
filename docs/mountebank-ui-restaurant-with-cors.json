@@ -15,14 +15,18 @@
             "headers": [
               {
                 "key": "Access-Control-Allow-Headers",
-                "value": "*"
+                "value": "Content-Type"
               },
               {
                 "key": "Access-Control-Allow-Origin",
-                "value": "http://localhost:8383,http://127.0.0.1:8383"
+                "value": "*"
               },
               {
                 "key": "Allow",
+                "value": "GET,POST,PUT,DELETE,OPTIONS"
+              },
+              {
+                "key": "Access-Control-Allow-Methods",
                 "value": "GET,POST,PUT,DELETE,OPTIONS"
               }
             ],
@@ -503,7 +507,7 @@
           "query_params": [],
           "body_match": {
             "type": "contains",
-            "body": "{\"name\":\"martins mania\",\"zipCode\":\"53217\",\"city\":\"Bonaroo\",\"state\":\"WI\",\"version\":1}"
+            "body": ""
           }
         },
         "documentation": "successful update (PUT) for restaurant 1"
@@ -529,7 +533,7 @@
         "match": {
           "path_match": {
             "type": "not equals",
-            "value": "/restraurant/1"
+            "value": "/restaurant/1"
           },
           "injection": {
             "use": false,
