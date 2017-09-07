@@ -7,12 +7,61 @@
       {
         "responses": [
           {
+            "status": "200",
+            "injection": {
+              "use": false,
+              "body": ""
+            },
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Headers",
+                "value": "*"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "http://localhost:8383,http://127.0.0.1:8383"
+              },
+              {
+                "key": "Allow",
+                "value": "GET,POST,PUT,DELETE,OPTIONS"
+              }
+            ],
+            "body": "",
+            "decorate": ""
+          }
+        ],
+        "match": {
+          "path_match": {
+            "type": "equals"
+          },
+          "injection": {
+            "use": false,
+            "body": ""
+          },
+          "verb": "OPTIONS",
+          "headers": [],
+          "query_params": [],
+          "body_match": {
+            "type": "equals",
+            "body": ""
+          }
+        },
+        "documentation": "CORS Options"
+      },
+      {
+        "responses": [
+          {
             "status": "500",
             "injection": {
               "use": false,
               "body": ""
             },
-            "headers": [],
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
             "body": "<h1>Server Error</h1> <p><em>Cannot use this endpoint for anything except restaurant queries</em></p>",
             "decorate": ""
           }
@@ -48,6 +97,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
               }
             ],
             "body": "{\n        \"name\": \"Huddle House\",\n        \"zipCode\": \"30701\",\n        \"city\": \"Calhoun\",\n        \"state\": \"GA\",\n        \"version\": 1,\n        \"id\": 1,\n        \"reviewDTOs\": [{\n                \"starRating\": 3,\n                \"reviewListing\": \"A real gas\",\n                \"stampDate\": 1422964478318,\n                \"id\": 10\n            }, {\n                \"starRating\": 4,\n                \"reviewListing\": \"Can you say \\\"gastric bypass\\\"?\",\n                \"stampDate\": 1422964478318,\n                \"id\": 11\n            }]\n    }",
@@ -85,6 +138,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
               }
             ],
             "body": "{\n        \"name\": \"John Browne's Pub & Eatery\",\n        \"zipCode\": \"46235\",\n        \"city\": \"Indianapolis\",\n        \"state\": \"IN\",\n        \"version\": 1,\n        \"id\": 3,\n        \"reviewDTOs\": [{\n                \"starRating\": 2,\n                \"reviewListing\": \"Impeccable service!\",\n                \"stampDate\": 1422964478318,\n                \"id\": 12\n            }]\n    }",
@@ -113,7 +170,7 @@
       {
         "responses": [
           {
-            "status": 200,
+            "status": "200",
             "injection": {
               "use": false,
               "body": ""
@@ -122,9 +179,28 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
               }
             ],
             "body": "[\n  {\n    \"name\": \"Huddle House\",\n    \"zipCode\": \"30701\",\n    \"city\": \"Calhoun\",\n    \"state\": \"GA\",\n    \"version\": 1,\n    \"id\": 1,\n    \"reviewDTOs\": [\n      {\n        \"starRating\": 3,\n        \"reviewListing\": \"A real gas\",\n        \"stampDate\": 1422964478318,\n        \"id\": 10\n      },\n      {\n        \"starRating\": 4,\n        \"reviewListing\": \"Can you say \\\"gastric bypass\\\"?\",\n        \"stampDate\": 1422964478318,\n        \"id\": 11\n      }\n    ]\n  },\n  {\n    \"name\": \"John Browne's Pub & Eatery\",\n    \"zipCode\": \"46235\",\n    \"city\": \"Indianapolis\",\n    \"state\": \"IN\",\n    \"version\": 1,\n    \"id\": 3,\n    \"reviewDTOs\": [\n      {\n        \"starRating\": 2,\n        \"reviewListing\": \"Impeccable service!\",\n        \"stampDate\": 1422964478318,\n        \"id\": 12\n      }\n    ]\n  },\n  {\n    \"name\": \"Ling's Express\",\n    \"zipCode\": \"53217\",\n    \"city\": \"Milwaukee\",\n    \"state\": \"WI\",\n    \"version\": 1,\n    \"id\": 2,\n    \"reviewDTOs\": [\n      {\n        \"starRating\": 6,\n        \"reviewListing\": \"Consider suicide first\",\n        \"stampDate\": 1422964478318,\n        \"id\": 14\n      },\n      {\n        \"starRating\": 1,\n        \"reviewListing\": \"Impeccable service!\",\n        \"stampDate\": 1422964478318,\n        \"id\": 13\n      },\n      {\n        \"starRating\": 4,\n        \"reviewListing\": \"A root canal would be better\",\n        \"stampDate\": 1422964478318,\n        \"id\": 15\n      }\n    ]\n  }\n]",
+            "decorate": ""
+          },
+          {
+            "status": "500",
+            "injection": {
+              "use": false,
+              "body": ""
+            },
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
+            "body": "",
             "decorate": ""
           }
         ],
@@ -138,7 +214,16 @@
             "body": ""
           },
           "verb": "GET",
-          "headers": [],
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            },
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
           "query_params": [],
           "body_match": {
             "type": "equals",
@@ -159,6 +244,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
               }
             ],
             "body": "{\"error\": \"Item not found\"}",
@@ -196,6 +285,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
               }
             ],
             "body": "{\n  \"id\": 52\n}",
@@ -234,7 +327,12 @@
               "use": false,
               "body": ""
             },
-            "headers": [],
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
             "body": "{\n  \"message\": \"restaurant add failed\",\n  \"errorClass\": \"com.dhenton9000.spring.mvc.controllers.ResourceException\"\n}",
             "decorate": ""
           }
@@ -266,7 +364,12 @@
               "use": false,
               "body": ""
             },
-            "headers": [],
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
             "body": "{\n  \"message\": \"for restaurant posting only\",\n  \"errorClass\": \"com.dhenton9000.spring.mvc.controllers.ResourceException\"\n}",
             "decorate": ""
           }
@@ -302,6 +405,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
               }
             ],
             "body": "{\n  \"message\": \"cannot find restaurant with given key\",\n  \"errorClass\": \"com.dhenton9000.spring.mvc.controllers.ResourceNotFoundException\"\n}",
@@ -335,7 +442,12 @@
               "use": false,
               "body": ""
             },
-            "headers": [],
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
             "body": "",
             "decorate": ""
           }
@@ -367,7 +479,12 @@
               "use": false,
               "body": ""
             },
-            "headers": [],
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
             "body": "{\"message\": \"successful update\"}",
             "decorate": ""
           }
@@ -399,7 +516,12 @@
               "use": false,
               "body": ""
             },
-            "headers": [],
+            "headers": [
+              {
+                "key": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ],
             "body": "{\n  \"message\": \"update failed\",\n  \"errorClass\": \"com.dhenton9000.spring.mvc.controllers.ResourceException\"\n}",
             "decorate": ""
           }
