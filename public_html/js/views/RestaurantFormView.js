@@ -143,7 +143,10 @@ define([
 
                     error: this.errorCallBack,
                     success: this.successCallBack};
-                
+                if (eventName == 'addModel')
+                {
+                    this.model.set(sample); 
+                }
                 this.model.save(null, opts);
 
             } else {
@@ -154,7 +157,7 @@ define([
         render: function () {
             var html = this.template(this.model.toJSON());
             $('#restaurantFormViewItems').html(html);
-            if (this.state === 'INITIAL')
+            if (this.state === 'INITIAL' || this.state === 'ERROR')
             {
                 $('#saveEdits').hide();
             }
