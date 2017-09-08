@@ -4,10 +4,19 @@ define([
     'backbone',
     'router', // Request router.js
 ], function ($, _, Backbone, Router) {
+    
+    var reportGeneralError = function(errorReport)
+    {
+        $('#mainErrorReport').html(errorReport);
+        window.setTimeout(function(){
+            $('#mainErrorReport').html("");
+        },5000)
+    }
+    
     var initialize = function (options) {
         options.vent = _.extend({}, Backbone.Events);
         // Pass in our Router module and call it's initialize function
-
+        options.vent.bind("generalError",reportGeneralError);
         var jxObj = $.getJSON(options._main_url, null, function (data, textStatus, jx)
 
         {

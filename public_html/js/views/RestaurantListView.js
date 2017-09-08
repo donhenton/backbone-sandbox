@@ -25,7 +25,7 @@ define([
             this.collection.bind("destroy", this.render, this);
             this.collection.bind("reset", this.render, this);
             this.collection.bind("sync", this.sync, this);
-            
+            this.options = options;
             
             this.vent = options.vent;
             options.vent.bind("deleteModel", this.deleteModel);
@@ -128,6 +128,7 @@ define([
 
                     self.collection.add(model);
                     self.render();
+                    self.options.vent.trigger("generalError",t)
 
                 },
 
