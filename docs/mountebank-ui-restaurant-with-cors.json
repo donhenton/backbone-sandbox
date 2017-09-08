@@ -287,7 +287,7 @@
         "match": {
           "path_match": {
             "type": "equals",
-            "value": "/restaurant"
+            "value": "/restaurant/"
           },
           "injection": {
             "use": false,
@@ -302,8 +302,8 @@
           ],
           "query_params": [],
           "body_match": {
-            "type": "equals",
-            "body": "{\"name\":\"martins mania\",\"zipCode\":\"53217\",\"city\":\"Bonaroo\",\"state\":\"WI\",\"version\":1}"
+            "type": "contains",
+            "body": "success"
           }
         },
         "documentation": "successful POST"
@@ -329,7 +329,7 @@
         "match": {
           "path_match": {
             "type": "equals",
-            "value": "/restaurant"
+            "value": "/restaurant/"
           },
           "injection": {
             "use": false,
@@ -339,8 +339,8 @@
           "headers": [],
           "query_params": [],
           "body_match": {
-            "type": "equals",
-            "body": "{\"name\":\"bartin fink beanery\",\"zipCode\":\"53217\",\"city\":\"Bonaroo\",\"state\":\"WI\",\"version\":1}"
+            "type": "contains",
+            "body": "fail"
           }
         },
         "documentation": "failed POST"
@@ -366,7 +366,7 @@
         "match": {
           "path_match": {
             "type": "equals",
-            "value": "/restaurant"
+            "value": "/restaurant/"
           },
           "injection": {
             "use": false,

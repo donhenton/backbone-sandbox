@@ -102,8 +102,36 @@ define([
          * @returns {undefined}
          */
         deleteModel: function (model) {
-            this.collection.remove(model);
-            model.destroy();
+
+            var self = this;
+
+
+            // this.collection.remove(model);
+
+            var options = {
+                wait: true,
+                success: function () {
+
+                    self.collection.remove(model);
+
+
+                },
+                error: function (a, responseBody, c)
+                {
+
+
+                    var t = "ERROR on save " + responseBody.status + " " + responseBody.statusText;
+                    // var errors = [];
+                    // errors.push(t)
+                    // this.validateFail(errors);
+                },
+
+            }
+
+
+
+
+            model.destroy(options);
         },
         /**
          * clean up the old views, otherwise during rendering they will
