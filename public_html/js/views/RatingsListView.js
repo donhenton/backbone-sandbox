@@ -16,7 +16,7 @@ define([
 
     var ratingsListView = Backbone.View.extend({
         el: "#ratingsArea",
-        addButtonRef: $("#addReviewButton"),
+       
         addDialogRef: null ,
 
         restaurant: null,
@@ -31,11 +31,26 @@ define([
             this.vent.bind("addModel", this.deleteModel);
             this.vent.bind("refreshRatings", this.refreshRatings),
             this.vent.bind("reshowEditList", this.reshowEditList),
-            this.addButtonRef.hide();
             this.template = _.template(ratingsListViewTemplate);
             this.addDialogRef = $(baseOptions.reviewDialogSelector);
-                    
+            this.drawState = null;
 
+        },
+        
+        
+        showReviewButton: function(show)
+        {
+            var  addButtonRef = $("#addReviewButton");
+            if (show)
+            {
+                addButtonRef.removeClass('hide');
+                addButtonRef.show();
+            }
+            else
+            {
+                addButtonRef.addClass('hide');
+                addButtonRef.hide();
+            }
         },
 
         events: {
@@ -50,7 +65,7 @@ define([
         deleteModel: function ()
         {
             this.collection = new RatingsList([]);
-            this.addButtonRef.hide();
+            this.showReviewButton(false);
             this.restaurant = null;
             this.render();
         },
@@ -165,7 +180,7 @@ define([
             var newReviews = [];
             for (var i = 0; i < this.collection.length; i++)
             {
-                item = this.collection.at(i).toJSON();
+                var item = this.collection.at(i).toJSON();
                 //console.log("refeshing with "+JSON.stringify(item));
                 newReviews.push(item);
 
@@ -183,7 +198,7 @@ define([
         loadRatings: function (mv) {
 
             this.collection = new RatingsList(mv.get("reviewDTOs"));
-            //this.addButtonRef.show();
+            this.showReviewButton(true);
             this.restaurant = mv;
             this.render();
 
@@ -204,14 +219,13 @@ define([
             $(this.el).empty();
             var html = this.template();
             $(this.el).append(html);
-            if (this.collection.length > 0)
+            if (!this.drawState)
             {
-                $('#addReviewButton').show()
-            } else
-            {
-                $('#addReviewButton').hide()
+                this.showReviewButton(false);
+                this.drawState = "INITIAL";
             }
-
+            
+           
             this.addDialogRef = $('#addReviewModal');
 
             for (var i = 0; i < this.collection.length; i++)

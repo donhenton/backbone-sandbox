@@ -12,7 +12,7 @@ define([
         el: "#editArea",
         initialize: function (options) {
             this.model = new Restaurant();
-            this.backup = new Restaurant();
+           
             this.vent = options.vent;
             _.bindAll(this, "editModel", "saveEdits", "addRestaurant",
                     "deleteModel", "validateFail", "errorCallBack", "successCallBack");
@@ -29,7 +29,7 @@ define([
 
         },
         
-        state: 'INITIAL', //  INITIAL, EDIT, ERROR
+        state: 'ADD', //  ADD, EDIT, ADD|ERROR, EDIT|ERROR
 
         /**
          * used by callbacks to signal what event
@@ -46,7 +46,7 @@ define([
          */
         validateFail: function (errorSet) {
             var info = "";
-            this.state = "ERROR";
+             
             for (var i = 0; i < errorSet.length; i++) {
                 info = info + '<li><em><span class="text-error">'
                         + errorSet[i] + "</span></em></li>"
@@ -68,8 +68,7 @@ define([
             this.state = "EDIT"
             // this.model.bind("invalid", this.handleInvalidInput,
             // this);
-            this.backup.clone(this.model);
-
+           
             this.render();
             $('#errorItems').empty();
         },
@@ -95,7 +94,7 @@ define([
             $('#name').val("");
             $('#city').val("");
             $('#errorItems').empty();
-            this.state = "INITIAL"
+            this.state = "ADD"
            
         },
         /**
@@ -107,7 +106,7 @@ define([
          */
         addRestaurant: function () {
             this.model = new Restaurant();
-            this.backup = new Restaurant();
+           
             this.saveRestaurant("addModel");
         },
         /**
@@ -134,6 +133,8 @@ define([
             sample.city = $('#city').val();
             sample.state = $('#state').val();
             sample.zipCode = $('#zipCode').val();
+            sample.version = $('#version').val();
+            
             this.eventName = eventName;
             var vResult = this.model.validate(sample);
             if (!vResult) {
@@ -142,12 +143,12 @@ define([
                 var opts = {
 
                     error: this.errorCallBack,
-                    success: this.successCallBack};
-                if (eventName == 'addModel')
-                {
-                    this.model.set(sample); 
-                }
-                this.model.save(null, opts);
+                    success: this.successCallBack   };
+                
+               //     this.model.set(sample); 
+                    this.model.save(sample, opts);
+                
+               
 
             } else {
                 this.validateFail(vResult);
@@ -157,22 +158,30 @@ define([
         render: function () {
             var html = this.template(this.model.toJSON());
             $('#restaurantFormViewItems').html(html);
-            if (this.state === 'INITIAL' || this.state === 'ERROR')
+            if (this.state === 'ADD' )
             {
                 $('#saveEdits').hide();
             }
-            else
+            if (this.state === 'EDIT' )
             {
                  $('#saveEdits').show();
+            }
+            if (this.state === 'EDIT|ERROR' )
+            {
+                 $('#saveEdits').show();
+            }
+            if (this.state === 'ADD|ERROR' )
+            {
+                 $('#saveEdits').hide();
             }
 
         },
 
         errorCallBack: function (a,responseBody,c)
         {
-            
-            this.model.clone(this.backup);
-            this.state = "ERROR";
+            if (this.state === "EDIT")
+                this.model.set(this.model._previousAttributes);
+            this.state = this.state+"|ERROR";
             this.render();
             var t = "ERROR on save " +  responseBody.status +" "+responseBody.statusText;
             var errors = [];
@@ -182,14 +191,7 @@ define([
 
         successCallBack: function (model, response, options)
         {
-           // console.log("in success callback " + this.eventName)
-            this.model.set("name", $('#name').val());
-            this.model.set("city", $('#city').val());
-            this.model.set("state", $('#state').val());
-            this.model.set("zipCode", $('#zipCode').val());
-            this.model.set("version", $('#version').val());
-            
-           
+          
             this.render();
             this.clearFields();
             if (this.eventName != null)
