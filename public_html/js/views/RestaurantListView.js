@@ -18,12 +18,15 @@ define([
             
             _.bindAll(this, "editModel", "deleteModel", "saveModel",
                     "addModel");
+            //these are backbone internal events that you can listen to
             this.collection.bind("change", this.render, this);
             this.collection.bind("add", this.render, this);
             this.collection.bind("remove", this.render, this);
             this.collection.bind("destroy", this.render, this);
             this.collection.bind("reset", this.render, this);
             this.collection.bind("sync", this.sync, this);
+            
+            
             this.vent = options.vent;
             options.vent.bind("deleteModel", this.deleteModel);
             options.vent.bind("editModel", this.editModel);
@@ -40,7 +43,7 @@ define([
          * @returns {undefined}
          */
         sync: function (e) {
-            // console.log(e);
+             console.log( "sync "+JSON.stringify(e));
         },
         /**
          * add model event handler this is in response to a click on the
@@ -112,24 +115,23 @@ define([
                 wait: true,
                 success: function () {
 
-                    self.collection.remove(model);
+                    //self.collection.remove(model);
 
 
                 },
-                error: function (a, responseBody, c)
+                error: function (model, responseBody, options)
                 {
 
+                   // https://stackoverflow.com/questions/13593508/backbone-js-model-delete-failure
+                    var t = "ERROR on save of '"+model.get('name')+"' " 
+                            + responseBody.status + " " + responseBody.statusText;
 
-                    var t = "ERROR on save " + responseBody.status + " " + responseBody.statusText;
-                    // var errors = [];
-                    // errors.push(t)
-                    // this.validateFail(errors);
+                    self.collection.add(model);
+                    self.render();
+
                 },
 
             }
-
-
-
 
             model.destroy(options);
         },
