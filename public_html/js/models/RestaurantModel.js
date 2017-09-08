@@ -43,7 +43,29 @@ define([
                 }
             });
 
-    return restaurantModel;
+    var cloneableRestaurantModel = restaurantModel.extend(
+            {
+                clone: function (source)
+                {
+                    return new cloneableRestaurantModel(
+                            {
+                                version: source.get("version"),
+                                state: source.get("state"),
+                                city: source.get("city"),
+                                zipCode: source.get("zipCode"),
+                                name: source.get("name")
+                            }
+
+
+
+                    );
+                }
+            }
+
+    )        
+
+
+    return cloneableRestaurantModel;
 
 });
-                        
+          

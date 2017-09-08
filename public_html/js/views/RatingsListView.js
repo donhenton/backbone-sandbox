@@ -16,7 +16,7 @@ define([
 
     var ratingsListView = Backbone.View.extend({
         el: "#ratingsArea",
-        //addButtonRef: $("#addReviewButton"),
+        addButtonRef: $("#addReviewButton"),
         addDialogRef: null ,
 
         restaurant: null,
@@ -31,7 +31,7 @@ define([
             this.vent.bind("addModel", this.deleteModel);
             this.vent.bind("refreshRatings", this.refreshRatings),
             this.vent.bind("reshowEditList", this.reshowEditList),
-            //this.addButtonRef.hide();
+            this.addButtonRef.hide();
             this.template = _.template(ratingsListViewTemplate);
             this.addDialogRef = $(baseOptions.reviewDialogSelector);
                     
@@ -74,7 +74,7 @@ define([
          */
         addReview: function ()
         {
-            console.log("hit add review");
+             
             var reviewListingVal = this.addDialogRef.find("#a_reviewListing").val();
             var errorAreaRef = $("#error_message_for_addReview");
             if (!reviewListingVal
@@ -99,7 +99,11 @@ define([
 
             //TODO put error handling here
 
-            var opts = {"url": baseOptions._main_url + "review/" + this.restaurant.get("id"), parse: "true", "wait": true, "success": this.reviewAddCallBack};
+            var opts = {"url": baseOptions._main_url + "review/" + this.restaurant.get("id"), 
+                 parse: "true", "wait": true, 
+                 error: this.reviewErrorCallBack,
+                "success": this.reviewAddCallBack};
+            
             newReview.save(newReview.toJSON(), opts);
 
 
@@ -118,6 +122,11 @@ define([
             this.collection.add(resp);
             this.render();
 
+        },
+        
+        reviewErrorCallBack: function(err)
+        {
+            
         },
 
         /**

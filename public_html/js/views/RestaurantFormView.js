@@ -12,20 +12,30 @@ define([
         el: "#editArea",
         initialize: function (options) {
             this.model = new Restaurant();
+            this.backup = new Restaurant();
             this.vent = options.vent;
             _.bindAll(this, "editModel", "saveEdits", "addRestaurant",
-                    "deleteModel", "validateFail");
+                    "deleteModel", "validateFail", "errorCallBack", "successCallBack");
             options.vent.bind("editModel", this.editModel);
             options.vent.bind("deleteModel", this.deleteModel);
             options.vent.bind("validateFail", this.validateFail);
             this.bind("invalid", this.validateFail, this);
             this.template = _.template(formTemplate);
+           
         },
         events: {
             "click #saveEdits": "saveEdits",
             "click #addRestaurant": "addRestaurant"
 
         },
+        
+        state: 'INITIAL', //  INITIAL, EDIT, ERROR
+
+        /**
+         * used by callbacks to signal what event
+         * 
+         */
+        eventName: null,
         /**
          * the routine to run when saving an object fails--displays
          * errors
@@ -36,6 +46,7 @@ define([
          */
         validateFail: function (errorSet) {
             var info = "";
+            this.state = "ERROR";
             for (var i = 0; i < errorSet.length; i++) {
                 info = info + '<li><em><span class="text-error">'
                         + errorSet[i] + "</span></em></li>"
@@ -54,11 +65,12 @@ define([
          */
         editModel: function (newModel) {
             this.model = newModel;
+            this.state = "EDIT"
             // this.model.bind("invalid", this.handleInvalidInput,
             // this);
+            this.backup.clone(this.model);
 
             this.render();
-            $('#saveEdits').show();
             $('#errorItems').empty();
         },
         /**
@@ -83,7 +95,8 @@ define([
             $('#name').val("");
             $('#city').val("");
             $('#errorItems').empty();
-            $('#saveEdits').hide();
+            this.state = "INITIAL"
+           
         },
         /**
          * called explicitly by the form add button, triggers the
@@ -94,6 +107,7 @@ define([
          */
         addRestaurant: function () {
             this.model = new Restaurant();
+            this.backup = new Restaurant();
             this.saveRestaurant("addModel");
         },
         /**
@@ -120,18 +134,18 @@ define([
             sample.city = $('#city').val();
             sample.state = $('#state').val();
             sample.zipCode = $('#zipCode').val();
+            this.eventName = eventName;
             var vResult = this.model.validate(sample);
             if (!vResult) {
-                this.model.set("name", $('#name').val());
-                this.model.set("city", $('#city').val());
-                this.model.set("state", $('#state').val());
-                this.model.set("zipCode", $('#zipCode').val());
-                this.model.set("version", $('#version').val());
+               
                 //TODO put error handling here
-                this.model.save();
-                this.clearFields();
-                if (eventName != null)
-                    this.vent.trigger(eventName, this.model);
+                var opts = {
+
+                    error: this.errorCallBack,
+                    success: this.successCallBack};
+                
+                this.model.save(null, opts);
+
             } else {
                 this.validateFail(vResult);
             }
@@ -140,12 +154,50 @@ define([
         render: function () {
             var html = this.template(this.model.toJSON());
             $('#restaurantFormViewItems').html(html);
+            if (this.state === 'INITIAL')
+            {
+                $('#saveEdits').hide();
+            }
+            else
+            {
+                 $('#saveEdits').show();
+            }
 
+        },
 
+        errorCallBack: function (a,responseBody,c)
+        {
+            
+            this.model.clone(this.backup);
+            this.state = "ERROR";
+            this.render();
+            var t = "ERROR on save " +  responseBody.status +" "+responseBody.statusText;
+            var errors = [];
+            errors.push(t)
+            this.validateFail(errors);
+        },
 
-
-
+        successCallBack: function (model, response, options)
+        {
+           // console.log("in success callback " + this.eventName)
+            this.model.set("name", $('#name').val());
+            this.model.set("city", $('#city').val());
+            this.model.set("state", $('#state').val());
+            this.model.set("zipCode", $('#zipCode').val());
+            this.model.set("version", $('#version').val());
+            
+           
+            this.render();
+            this.clearFields();
+            if (this.eventName != null)
+            {
+                this.vent.trigger(this.eventName, this.model);
+                this.eventName = null;
+            }
         }
+
+
+
     });
 
 
