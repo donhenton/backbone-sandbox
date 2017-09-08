@@ -191,21 +191,6 @@
             ],
             "body": "[\n  {\n    \"name\": \"Huddle House\",\n    \"zipCode\": \"30701\",\n    \"city\": \"Calhoun\",\n    \"state\": \"GA\",\n    \"version\": 1,\n    \"id\": 1,\n    \"reviewDTOs\": [\n      {\n        \"starRating\": 3,\n        \"reviewListing\": \"A real gas\",\n        \"stampDate\": 1422964478318,\n        \"id\": 10\n      },\n      {\n        \"starRating\": 4,\n        \"reviewListing\": \"Can you say \\\"gastric bypass\\\"?\",\n        \"stampDate\": 1422964478318,\n        \"id\": 11\n      }\n    ]\n  },\n  {\n    \"name\": \"John Browne's Pub & Eatery\",\n    \"zipCode\": \"46235\",\n    \"city\": \"Indianapolis\",\n    \"state\": \"IN\",\n    \"version\": 1,\n    \"id\": 3,\n    \"reviewDTOs\": [\n      {\n        \"starRating\": 2,\n        \"reviewListing\": \"Impeccable service!\",\n        \"stampDate\": 1422964478318,\n        \"id\": 12\n      }\n    ]\n  },\n  {\n    \"name\": \"Ling's Express\",\n    \"zipCode\": \"53217\",\n    \"city\": \"Milwaukee\",\n    \"state\": \"WI\",\n    \"version\": 1,\n    \"id\": 2,\n    \"reviewDTOs\": [\n      {\n        \"starRating\": 6,\n        \"reviewListing\": \"Consider suicide first\",\n        \"stampDate\": 1422964478318,\n        \"id\": 14\n      },\n      {\n        \"starRating\": 1,\n        \"reviewListing\": \"Impeccable service!\",\n        \"stampDate\": 1422964478318,\n        \"id\": 13\n      },\n      {\n        \"starRating\": 4,\n        \"reviewListing\": \"A root canal would be better\",\n        \"stampDate\": 1422964478318,\n        \"id\": 15\n      }\n    ]\n  }\n]",
             "decorate": ""
-          },
-          {
-            "status": "500",
-            "injection": {
-              "use": false,
-              "body": ""
-            },
-            "headers": [
-              {
-                "key": "Access-Control-Allow-Origin",
-                "value": "*"
-              }
-            ],
-            "body": "",
-            "decorate": ""
           }
         ],
         "match": {
