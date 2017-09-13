@@ -593,3 +593,12 @@ section#pageContainer {
 .explainDialog.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
   float: none;
   text-align: center; }
+
+
+#sourceCodeLink
+{
+    position:absolute;
+    top:10px;
+    left:1120px;
+    
+}
